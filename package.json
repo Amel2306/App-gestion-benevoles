@@ -1,0 +1,19 @@
+{
+  "name": "app-gestion-benevoles",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Amel2306/App-gestion-benevoles.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Amel2306/App-gestion-benevoles/issues"
+  },
+  "homepage": "https://github.com/Amel2306/App-gestion-benevoles#readme"
+}
