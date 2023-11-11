@@ -15,5 +15,10 @@
   "bugs": {
     "url": "https://github.com/Amel2306/App-gestion-benevoles/issues"
   },
-  "homepage": "https://github.com/Amel2306/App-gestion-benevoles#readme"
+  "homepage": "https://github.com/Amel2306/App-gestion-benevoles#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "mysql2": "^3.6.3",
+    "sequelize": "^6.34.0"
+  }
 }
