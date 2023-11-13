@@ -6,6 +6,10 @@ const app = express();
 
 //les routes
 const userRoutes = require('./routes/userRoutes')
+const gameRoutes = require('./routes/gameRoutes')
+const zoneplanRoutes = require('./routes/zoneplanRoutes')
+const zonebenevoleRoutes = require('./routes/zonebenevoleRoutes')
+
 
 app.use(
   cors({
@@ -14,7 +18,6 @@ app.use(
 );
 
 // les routes necessaires
-
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader(
@@ -32,5 +35,9 @@ app.use(express.json()); // Transforme les requêtes entrantes JSON en objet JS
 app.use(express.urlencoded({ extended: true })); // Permet de lire les données des strings dans les requêtes entrantes
 
 app.use("/api/users", userRoutes)
+app.use("/api/games", gameRoutes)
+app.use("/api/zoneplan", zoneplanRoutes)
+app.use("/api/zonebenevole", zonebenevoleRoutes)
+
 
 module.exports = app;

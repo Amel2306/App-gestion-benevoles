@@ -1,11 +1,20 @@
 const User = require ("../models/user")
 
 exports.getAllUsers = async () => {
-    const users = await User.findAll();
+    try{
+        const users = await User.findAll();
     return users;
+    } catch (error) {
+        throw new Error("Erreur lors de la récupération des users.");
+    }
 };
 
 exports.createUser = async (userData) => {
-    const newUser = await User.create(userData)
-    return newUser;
+    try{
+        const newUser = await User.create(userData)
+        return newUser;
+    }
+    catch(error){
+        throw new Error("Erreur lors de la création de l'user.")
+    }
 }

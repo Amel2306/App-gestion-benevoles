@@ -5,7 +5,7 @@ exports.getAllUsers = async (req, res) => {
       const users = await userServices.getAllUsers();
       res.json(users);
     } catch (error) {
-      res.status(500).json({ message: "Error aucun user", error });
+      res.status(500).json({ message: "Error lors de la récupération des users", error });
     }
 };
 
@@ -20,7 +20,7 @@ exports.createUser = async (req, res) => {
             role,
             password,
         } = req.body;
-        const userDate = {
+        const userData = {
             nom,
             prenom,
             email,
@@ -29,10 +29,9 @@ exports.createUser = async (req, res) => {
             role,
             password,
         }
-        const newUser = await userServices.createUser(userDate);
+        const newUser = await userServices.createUser(userData);
         res.status(201).json(newUser);
-    }
-    catch(error) {
+    } catch(error) {
         res
         .status(400)
         .json({ message: "Error creation user dans controllers", error });  
