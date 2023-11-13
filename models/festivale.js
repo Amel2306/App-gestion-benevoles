@@ -15,7 +15,11 @@ const Festivale = db.define("festivale", {
     type: DataTypes.STRING,
     allowNull: false
   },
-  date_evenement: {
+  date_debut: {
+    type: DataTypes.DATE,
+    allowNull:false
+  },
+  date_fin: {
     type: DataTypes.DATE,
     allowNull:false
   },
