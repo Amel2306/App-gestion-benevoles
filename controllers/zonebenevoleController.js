@@ -1,4 +1,4 @@
-const zoneBenevoleServices = require("../services/zonebenevoleServices");
+const zoneBenevoleServices = require("../services/zonebenevoleService");
 
 exports.getAllZonesBenevole = async (req, res) => {
   try {

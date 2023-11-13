@@ -1,4 +1,4 @@
-const zonePlanServices = require("../services/zoneplanServices");
+const zonePlanServices = require("../services/zoneplanService");
 
 exports.getAllZonesPlan = async (req, res) => {
   try {

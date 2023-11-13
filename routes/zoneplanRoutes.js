@@ -1,5 +1,5 @@
 const express = require("express");
-const zoneplanControllers = require ("../controllers/zoneplanControllers")
+const zoneplanControllers = require ("../controllers/zoneplanController")
 
 const router = express.Router()
 
