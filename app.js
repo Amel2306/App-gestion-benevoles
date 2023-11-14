@@ -11,6 +11,7 @@ const zoneplanRoutes = require('./routes/zoneplanRoutes')
 const zonebenevoleRoutes = require('./routes/zonebenevoleRoutes')
 const festivaleRoutes = require('./routes/festivaleRoutes');
 const postRoutes = require('./routes/postRoutes');
+const associationRoutes = require('./routes/associationRoutes');
 
 
 app.use(
@@ -42,5 +43,6 @@ app.use("/api/zoneplan", zoneplanRoutes)
 app.use("/api/zonebenevole", zonebenevoleRoutes)
 app.use("/api/festivale", festivaleRoutes);
 app.use("/api/post", postRoutes);
+app.use("/api/association", associationRoutes);
 
 module.exports = app;
