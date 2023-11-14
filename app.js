@@ -13,6 +13,8 @@ const festivaleRoutes = require('./routes/festivaleRoutes');
 const postRoutes = require('./routes/postRoutes');
 const associationRoutes = require('./routes/associationRoutes');
 const creneauxRoutes = require('./routes/creneauxRoutes');
+const activityRoutes = require('./routes/activityRoutes');
+
 
 app.use(
   cors({
@@ -45,5 +47,6 @@ app.use("/api/festivale", festivaleRoutes);
 app.use("/api/post", postRoutes);
 app.use("/api/association", associationRoutes);
 app.use("/api/creneaux", creneauxRoutes)
+app.use("/api/activity",activityRoutes)
 
 module.exports = app;
