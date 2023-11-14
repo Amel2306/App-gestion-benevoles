@@ -14,6 +14,7 @@ const postRoutes = require('./routes/postRoutes');
 const associationRoutes = require('./routes/associationRoutes');
 const creneauxRoutes = require('./routes/creneauxRoutes');
 const activityRoutes = require('./routes/activityRoutes');
+const userActiviteRoutes = require('./routes/userActiviteRoutes');
 
 
 app.use(
@@ -39,14 +40,15 @@ app.use((req, res, next) => {
 app.use(express.json()); // Transforme les requêtes entrantes JSON en objet JS
 app.use(express.urlencoded({ extended: true })); // Permet de lire les données des strings dans les requêtes entrantes
 
-app.use("/api/users", userRoutes)
-app.use("/api/games", gameRoutes)
-app.use("/api/zoneplan", zoneplanRoutes)
-app.use("/api/zonebenevole", zonebenevoleRoutes)
+app.use("/api/users", userRoutes);
+app.use("/api/games", gameRoutes);
+app.use("/api/zoneplan", zoneplanRoutes);
+app.use("/api/zonebenevole", zonebenevoleRoutes);
 app.use("/api/festivale", festivaleRoutes);
 app.use("/api/post", postRoutes);
 app.use("/api/association", associationRoutes);
-app.use("/api/creneaux", creneauxRoutes)
-app.use("/api/activity",activityRoutes)
+app.use("/api/creneaux", creneauxRoutes);
+app.use("/api/activity",activityRoutes);
+app.use("/api/userActivite", userActiviteRoutes);
 
 module.exports = app;
