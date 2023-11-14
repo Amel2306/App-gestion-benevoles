@@ -12,7 +12,7 @@ const zonebenevoleRoutes = require('./routes/zonebenevoleRoutes')
 const festivaleRoutes = require('./routes/festivaleRoutes');
 const postRoutes = require('./routes/postRoutes');
 const associationRoutes = require('./routes/associationRoutes');
-
+const creneauxRoutes = require('./routes/creneauxRoutes');
 
 app.use(
   cors({
@@ -44,5 +44,6 @@ app.use("/api/zonebenevole", zonebenevoleRoutes)
 app.use("/api/festivale", festivaleRoutes);
 app.use("/api/post", postRoutes);
 app.use("/api/association", associationRoutes);
+app.use("/api/creneaux", creneauxRoutes)
 
 module.exports = app;
