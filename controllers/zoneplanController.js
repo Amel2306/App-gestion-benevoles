@@ -9,6 +9,17 @@ exports.getAllZonesPlan = async (req, res) => {
   }
 };
 
+exports.getZonePlanById = async (req, res) => {
+  try {
+    const zonePlanId = req.params.id;
+    const zonePlan = await zonePlanServices.getZonePlanById(zonePlanId);
+
+    res.json(zonePlan);
+  } catch (error) {
+    res.status(400).json({ message: "Erreur lors de la récupération de la zone plan par ID.", error });
+  }
+};
+
 exports.createZonePlan = async (req, res) => {
   try {
     const { nom_zp } = req.body;

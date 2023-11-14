@@ -9,6 +9,17 @@ exports.getAllZonesBenevole = async (req, res) => {
   }
 };
 
+exports.getZoneBenevoleById = async (req, res) => {
+  try {
+    const zoneBenevoleId = req.params.id;
+    const zoneBenevole = await zoneBenevoleServices.getZoneBenevoleById(zoneBenevoleId);
+
+    res.json(zoneBenevole);
+  } catch (error) {
+    res.status(400).json({ message: "Erreur lors de la récupération de la zone bénévole par ID.", error });
+  }
+};
+
 exports.createZoneBenevole = async (req, res) => {
   try {
     const { nom_zb, zone_plan_id } = req.body;

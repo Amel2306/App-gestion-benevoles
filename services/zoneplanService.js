@@ -1,4 +1,4 @@
-const ZonePlan = require("../models/zoneplan"); 
+const ZonePlan = require("../models/zoneplan");
 
 exports.getAllZonesPlan = async () => {
   try {
@@ -6,6 +6,20 @@ exports.getAllZonesPlan = async () => {
     return zonesp;
   } catch (error) {
     throw new Error("Erreur lors de la récupération des zones.");
+  }
+};
+
+exports.getZonePlanById = async (zoneId) => {
+  try {
+    const zonep = await ZonePlan.findByPk(zoneId);
+
+    if (!zonep) {
+      throw new Error("Zone non trouvée.");
+    }
+
+    return zonep;
+  } catch (error) {
+    throw new Error("Erreur lors de la récupération de la zone par ID.");
   }
 };
 

@@ -9,13 +9,27 @@ exports.getAllZonesBenevole = async () => {
   }
 };
 
+exports.getZoneBenevoleById = async (zoneId) => {
+  try {
+    const zoneb = await ZoneBenevole.findByPk(zoneId);
+
+    if (!zoneb) {
+      throw new Error("Zone non trouvée.");
+    }
+
+    return zoneb;
+  } catch (error) {
+    throw new Error("Erreur lors de la récupération de la zone par ID.");
+  }
+};
+
 exports.createZoneBenevole = async (zoneData) => {
   try {
     const newZoneb = await ZoneBenevole.create(zoneData);
 
     return newZoneb;
   } catch (error) {
-    throw new Error("1 Erreur lors de la création de la zone.");
+    throw new Error("Erreur lors de la création de la zone.");
   }
 };
 
