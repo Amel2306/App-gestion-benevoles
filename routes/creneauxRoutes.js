@@ -1,12 +1,12 @@
 const express = require("express");
-const creneauxControllers = require("../controllers/creneauxController"); 
+const creneauControllers = require("../controllers/creneauController"); 
 
 const router = express.Router();
 
-router.get("/", creneauxControllers.getAllCreneaux);
-router.get("/:id", creneauxControllers.getCreneauxById);
-router.post("/", creneauxControllers.createCreneaux);
-router.put("/:id", creneauxControllers.updateCreneaux);
-router.delete("/:id", creneauxControllers.deleteCreneaux);
+router.get("/", creneauControllers.getAllCreneaux);
+router.get("/:id", creneauControllers.getCreneauxById);
+router.post("/", creneauControllers.createCreneaux);
+router.put("/:id", creneauControllers.updateCreneaux);
+router.delete("/:id", creneauControllers.deleteCreneaux);
 
 module.exports = router;

@@ -1,9 +1,10 @@
 const { DataTypes } = require("sequelize");
 const db = require("../config/dbConfig");
+const Festivale = require("./festivale");
 
 const ZoneBenevole = require("./zonebenevole");
 
-const Game = db.define("game", {
+const Jeu = db.define("jeu", {
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
@@ -20,14 +21,14 @@ const Game = db.define("game", {
   zone_benevole_id: {
     type: DataTypes.INTEGER,
     allowNull: true,
-    references : {
-      model:"zonebenevoles",
-      key:"id",
-    }
+    references: {
+      model: "zonebenevoles",
+      key: "id",
+    },
   },
   a_animer: {
     type: DataTypes.STRING,
-    allowNull: false, 
+    allowNull: false,
   },
   recu: {
     type: DataTypes.BOOLEAN,
@@ -102,9 +103,21 @@ const Game = db.define("game", {
     type: DataTypes.STRING,
     allowNull: true,
   },
+  festivale_id: {
+    type: DataTypes.INTEGER,
+    allowNull: true,
+    references: {
+      model: "festivales",
+      key: "id",
+    },
+  },
 });
 
 //relation
-Game.belongsTo(ZoneBenevole, { foreignKey: 'zone_benevole_id', onDelete:"SET NULL"});
+Jeu.belongsTo(Festivale, { foreignKey: "festivale_id", onDelete: "CASCADE" });
+Jeu.belongsTo(ZoneBenevole, {
+  foreignKey: "zone_benevole_id",
+  onDelete: "SET NULL",
+});
 
-module.exports = Game;
+module.exports = Jeu;

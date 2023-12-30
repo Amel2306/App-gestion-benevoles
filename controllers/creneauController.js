@@ -1,4 +1,4 @@
-const creneauxServices = require("../services/creneauxService");
+const creneauxServices = require("../services/creneauService");
 
 exports.getAllCreneaux = async (req, res) => {
   try {

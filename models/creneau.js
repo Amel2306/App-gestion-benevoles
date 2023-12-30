@@ -1,7 +1,7 @@
 const { DataTypes } = require("sequelize");
 const db = require("../config/dbConfig");
 
-const Creneaux = db.define("creneaux", {
+const Creneau = db.define("creneau", {
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
@@ -21,4 +21,4 @@ const Creneaux = db.define("creneaux", {
   },
 });
 
-module.exports = Creneaux;
+module.exports = Creneau;

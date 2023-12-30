@@ -22,8 +22,7 @@ exports.getZoneBenevoleById = async (req, res) => {
 
 exports.createZoneBenevole = async (req, res) => {
   try {
-    const { nom_zb, zone_plan_id } = req.body;
-    const zoneBenevoleData = { nom_zb, zone_plan_id };
+    const zoneBenevoleData = req.body;
 
     const newZoneBenevole = await zoneBenevoleServices.createZoneBenevole(zoneBenevoleData);
     res.status(201).json(newZoneBenevole);

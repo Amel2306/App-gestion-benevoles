@@ -1,4 +1,4 @@
-const Creneaux = require("../models/creneaux");
+const Creneaux = require("../models/creneau");
 
 exports.getAllCreneaux = async () => {
   try {
