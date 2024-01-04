@@ -22,36 +22,36 @@ const User = db.define("user", {
   },
   numero_tel: {
     type: DataTypes.STRING,
-    allowNull: false,
+    allowNull: true,
   },
   pseudo: {
     type: DataTypes.STRING,
-    allowNull: false,
+    allowNull: true,
   },
-  bigraphie: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-  role: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-  password: {
+  biographie: {
     type: DataTypes.STRING,
     allowNull: true,
   },
+  role: {
+    type: DataTypes.STRING,
+    allowNull: true,
+  },
+  password: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
   cherche_hebergement: {
     type: DataTypes.BOOLEAN,
-    allowNull: false,
+    allowNull: true,
   },
   propose_hebergement: {
     type: DataTypes.BOOLEAN,
-    allowNull: false,
+    allowNull: true,
   },
   taille: {
     type: DataTypes.ENUM,
     values: ["xs", "s", "m", "l", "xl", "2xl", "3xl", "4xl"],
-    allowNull: false,
+    allowNull: true,
   },
   association_id: {
     type: DataTypes.INTEGER,

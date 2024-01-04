@@ -14,7 +14,7 @@ exports.signup = async (req, res) => {
                 return res.status(400).json({ message: "Can't use this password", err });
             }
             try {
-                const newUser = await User.create({ nom, prenom, email, mdp: hash });
+                const newUser = await User.create({ nom, prenom, email, password: hash });
                 const secretKey = "ceci_est_une_clée_secrette";
                 const payload = {email: email, id: newUser.id };
                 const options = { expiresIn: '24h' };
@@ -40,7 +40,7 @@ exports.login = async (req,res) =>{
     try {
         const existingUser = await User.findOne({ where: { email } });
         if (existingUser) {
-            const hashPw = existingUser.mdp
+            const hashPw = existingUser.password
             bcrypt.compare(password, hashPw, async function(err, result) {
                 if (result) {
                     const payload = { email: email, id: existingUser.id };
