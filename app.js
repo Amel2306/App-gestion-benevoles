@@ -1,5 +1,6 @@
 const express = require("express");
 const cors = require("cors");
+const helmet = require('helmet');
 
 //création de l'app
 const app = express();
@@ -18,6 +19,9 @@ const demandeLogementRoutes = require ("./routes/demandeLogementRoutes");
 const demanderActiviteRoutes = require ("./routes/demanderActiviteRoutes");
 const hebergementRoutes = require ("./routes/hebergementRoutes");
 const participerFestivaleRoutes = require ("./routes/participerFestivaleRoutes");
+
+const authentification = require('./routes/authRoutes')
+
 
 
 app.use(
@@ -40,6 +44,7 @@ app.use((req, res, next) => {
   next();
 });
 
+app.use(helmet());
 app.use(express.json()); // Transforme les requêtes entrantes JSON en objet JS
 app.use(express.urlencoded({ extended: true })); // Permet de lire les données des strings dans les requêtes entrantes
 
@@ -56,6 +61,10 @@ app.use("/api/creneauespace", creneauEspaceRoutes);
 app.use("/api/demanderlogement", demandeLogementRoutes);
 app.use("/api/demanderactivtie", demanderActiviteRoutes);
 app.use("/api/participerfestivale", participerFestivaleRoutes);
+
+//routes pour l'authentification
+app.use('/api/authentification', authentification);
+
 
 
 module.exports = app;
