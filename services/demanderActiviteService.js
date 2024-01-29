@@ -67,3 +67,20 @@ exports.getDemandeByCreneau = async (creneauId) => {
   }
 }
 
+
+exports.getDemandeByZoneBenevole = async (zonebenevoleId) => {
+  try {
+    const allDemandes = await DemanderActivite.findAll ({
+      where: {
+        zonebenevole_id: {
+          [Op.eq]: zonebenevoleId
+        }
+      }
+    })
+    return allDemandes
+  }
+  catch (err) {
+    throw new Error ('Aucune demande trouvée pour cet espace')
+  }
+}
+
