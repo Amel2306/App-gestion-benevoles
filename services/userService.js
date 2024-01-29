@@ -9,6 +9,21 @@ exports.getAllUsers = async () => {
     }
 };
 
+
+exports.getUserById = async (userId) => {
+    try {
+        const user = await User.findByPk(userId);
+        if (!user) {
+        throw new Error("User non trouvé.");
+
+        }
+        return user;
+    }
+    catch (error) {
+        throw new Error("Erreur lors de la mise à jour du user.");
+    }
+}
+
 exports.createUser = async (userData) => {
     try{
         const newUser = await User.create(userData)

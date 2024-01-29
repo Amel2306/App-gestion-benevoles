@@ -9,6 +9,19 @@ exports.getAllUsers = async (req, res) => {
     }
 };
 
+exports.getUserById = async (req, res) => {
+  try {
+    const {id} = req.params
+    const user = await userServices.getUserById(id)
+    res.status(201).json(user)
+  }
+  catch(error) {
+    res
+    .status(400)
+    .json({ message: "Error récupération user dans controllers", error });  
+  }
+}
+
 exports.createUser = async (req, res) => {
     try {
         const userData = req.body
