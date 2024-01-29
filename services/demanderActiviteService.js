@@ -35,3 +35,19 @@ exports.accpeterDemande = async (demandeId) => {
   }
 }
 
+exports.getDemandeByUsers = async (userId) => {
+  try {
+    const allDemandes = await DemanderActivite.findAll ({
+      where: {
+        user_id: {
+          [Op.eq]: userId
+        }
+      }
+    })
+    return allDemandes
+  }
+  catch (err) {
+    throw new Error ('Aucune demande trouvée pour cet utilisateur')
+  }
+}
+

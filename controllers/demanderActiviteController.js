@@ -22,3 +22,15 @@ exports.accpeterDemande = async (req, res) => {
     res.status(500).json({ message: 'Erreur lors de acceptation de demande dans le contrôleur' });
   }
 }
+
+exports.getDemandeByUsers = async (req,res) => {
+  const {userId} = req.params
+
+  try {
+    const allDemandes = await demanderActiviteService.getDemandeByUsers(userId)
+    res.status(201).json(allDemandes)
+  }
+  catch (error) {
+    res.status(500).json({ message: 'Erreur lors de la récupération des demande du user dans le contrôleur' });
+  }
+}
