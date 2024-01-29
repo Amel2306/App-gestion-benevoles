@@ -38,6 +38,16 @@ const demanderActivite = db.define(
         key: "id",
       },
     },
+    accepte: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      defaultValue: 0
+    },
+    archive: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      defaultValue: 0
+    }
   },
   {
     uniqueKeys: {
