@@ -59,3 +59,13 @@ exports.getDemandeByZoneBenevole = async (req,res) => {
     res.status(500).json({ message: 'Erreur lors de la récupération des demande pour ce créneau dans le contrôleur' });
   }
 }
+
+exports.getDemandeAcceptee = async (req, res) => {
+  try {
+    const allDemandes = await demanderActiviteService.getDemandeAcceptee()
+    res.status(201).json(allDemandes)
+  }
+  catch (error ) {
+    res.status(500).json({ message: 'Erreur lors de la récupération des demandes acceptées dans le contrôleur' });
+  }
+}

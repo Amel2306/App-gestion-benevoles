@@ -10,6 +10,22 @@ exports.createDemanderActivite = async (demanderActiviteData) => {
   }
 };
 
+exports.getDemandeAcceptee = async () => {
+  try {
+    const allDemandes = await DemanderActivite.findAll({
+      where: {
+        accepte: {
+          [Op.eq]: 1
+        }
+      }
+    });
+    return allDemandes
+  }
+  catch (error) {
+    throw new Error('Erreur lors de la récupération de ces demande d\'activite dans le service');
+  }
+}
+
 exports.accpeterDemande = async (demandeId) => {
   try {
     const demandeActivite = await DemanderActivite.findByPk(demandeId);
