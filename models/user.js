@@ -41,11 +41,11 @@ const User = db.define("user", {
     allowNull: false,
   },
   cherche_hebergement: {
-    type: DataTypes.BOOLEAN,
+    type: DataTypes.INTEGER,
     allowNull: true,
   },
   propose_hebergement: {
-    type: DataTypes.BOOLEAN,
+    type: DataTypes.INTEGER,
     allowNull: true,
   },
   taille: {

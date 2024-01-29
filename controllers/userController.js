@@ -20,3 +20,17 @@ exports.createUser = async (req, res) => {
         .json({ message: "Error creation user dans controllers", error });  
     }
 }
+
+exports.updateUser = async (req, res) => {
+  try {
+    const userData = req.body
+    const {userId} = req.params
+    const userUpdated = await userServices.updateUser(userId, userData)
+    res.status(201).json(userUpdated)
+  }
+  catch(error) {
+    res
+    .status(400)
+    .json({ message: "Error modification user dans controllers", error });  
+  }
+}
