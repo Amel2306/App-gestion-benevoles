@@ -5,5 +5,7 @@ const demanderActiviteController = require('../controllers/demanderActiviteContr
 router.post('/', demanderActiviteController.createDemanderActivite);
 router.put('/accepte/:id', demanderActiviteController.accpeterDemande);
 router.get('/user/:userId', demanderActiviteController.getDemandeByUsers);
+router.get('/creneau/:creneauId', demanderActiviteController.getDemandeByCreneau);
 
 module.exports = router;
+

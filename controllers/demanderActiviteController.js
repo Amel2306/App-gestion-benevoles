@@ -34,3 +34,15 @@ exports.getDemandeByUsers = async (req,res) => {
     res.status(500).json({ message: 'Erreur lors de la récupération des demande du user dans le contrôleur' });
   }
 }
+
+exports.getDemandeByCreneau = async (req,res) => {
+  const {creneauId} = req.params
+
+  try {
+    const allDemandes = await demanderActiviteService.getDemandeByCreneau(creneauId)
+    res.status(201).json(allDemandes)
+  }
+  catch (error) {
+    res.status(500).json({ message: 'Erreur lors de la récupération des demande pour ce créneau dans le contrôleur' });
+  }
+}

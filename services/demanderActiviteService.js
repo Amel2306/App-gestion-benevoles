@@ -51,3 +51,19 @@ exports.getDemandeByUsers = async (userId) => {
   }
 }
 
+exports.getDemandeByCreneau = async (creneauId) => {
+  try {
+    const allDemandes = await DemanderActivite.findAll ({
+      where: {
+        creneau_id: {
+          [Op.eq]: creneauId
+        }
+      }
+    })
+    return allDemandes
+  }
+  catch (err) {
+    throw new Error ('Aucune demande trouvée pour ce créneau')
+  }
+}
+
