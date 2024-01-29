@@ -69,3 +69,29 @@ exports.getDemandeAcceptee = async (req, res) => {
     res.status(500).json({ message: 'Erreur lors de la récupération des demandes acceptées dans le contrôleur' });
   }
 }
+
+exports.getDemandeByZoneCreneau = async (req, res) => {
+  try {
+    const {zoneId} = req.params
+    const {creneauId} = req.params
+
+    const demandes = await demanderActiviteService.getDemandeByZoneCreneau(zoneId,creneauId)
+    res.status(201).json(demandes)
+  }
+  catch (error) {
+    res.status(500).json({ message: 'Erreur lors de la récupération des demandes pour ce créneau et cette zone dans le contrôleur' });
+  }
+}
+
+exports.getDemandeByZoneCreneauAccepte = async (req, res) => {
+  try {
+    const {zoneId} = req.params
+    const {creneauId} = req.params
+
+    const demandes = await demanderActiviteService.getDemandeByZoneCreneauAccepte(zoneId,creneauId)
+    res.status(201).json(demandes)
+  }
+  catch (error) {
+    res.status(500).json({ message: 'Erreur lors de la récupération des demandes acceptées pour ce créneau et cette zone dans le contrôleur' });
+  }
+}

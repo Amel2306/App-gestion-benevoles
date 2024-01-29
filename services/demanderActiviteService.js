@@ -100,3 +100,43 @@ exports.getDemandeByZoneBenevole = async (zonebenevoleId) => {
   }
 }
 
+exports.getDemandeByZoneCreneau = async (zoneId, creneauId) => {
+    try {
+      const allDemandes = await DemanderActivite.findAll ({
+        where: {
+          zonebenevole_id: {
+            [Op.eq]: zoneId
+          },
+          creneau_id: {
+            [Op.eq]: creneauId
+          }
+        }
+      })
+      return allDemandes
+    }
+    catch (err) {
+      throw new Error ('Aucune demande trouvée pour cet espace')
+    }
+}
+
+exports.getDemandeByZoneCreneauAccepte = async (zoneId, creneauId) => {
+  try {
+    const allDemandes = await DemanderActivite.findAll ({
+      where: {
+        zonebenevole_id: {
+          [Op.eq]: zoneId
+        },
+        creneau_id: {
+          [Op.eq]: creneauId
+        },
+        accepte: {
+          [Op.eq]: 1
+        }
+      }
+    })
+    return allDemandes
+  }
+  catch (err) {
+    throw new Error ('Aucune demande trouvée pour cet espace')
+  }
+}
