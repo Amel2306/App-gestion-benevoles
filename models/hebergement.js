@@ -33,6 +33,11 @@ const Hebergement = db.define("hebergement", {
       key: "id",
     },
   },
+  visible: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    defaultValue: 1
+  }
 });
 
 Hebergement.belongsTo(User, { foreignKey: "user_id", onDelete: "CASCADE" });
