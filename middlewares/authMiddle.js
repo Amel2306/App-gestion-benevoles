@@ -15,7 +15,7 @@ exports.auth = (req, res, next) => {
 };
 
 exports.isAdmin = (req, res, next) => {
-    if (req.user && req.user.email === 'ameladdou213@gmail.com') {
+    if (req.user && req.user.email === 'admin@admin.fr') {
         next();
     } else {
         res.status(403).json({ message: 'Accès non autorisé. Réservé aux administrateurs.' });

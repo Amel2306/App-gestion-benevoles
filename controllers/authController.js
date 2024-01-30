@@ -70,7 +70,6 @@ exports.login = async (req,res) =>{
 
 exports.logout = async (req, res) => {
     try {
-        // Trouver l'utilisateur connecté
         const user = await User.findByPk(req.user.id);
 
         // Supprimer le token
