@@ -1,5 +1,7 @@
 const DemanderActivite = require('../models/demanderActivite');
 const { Op } = require('sequelize');
+const UserService = require('./userService');
+const ParticiperFestivaleService = require('./participerFestivaleService')
 
 exports.createDemanderActivite = async (demanderActiviteData) => {
   try {
@@ -26,7 +28,7 @@ exports.getDemandeAcceptee = async () => {
   }
 }
 
-exports.accpeterDemande = async (demandeId) => {
+exports.accpeterDemande = async (demandeId, festivalId) => {
   try {
     const demandeActivite = await DemanderActivite.findByPk(demandeId);
     demandeActivite.accepte = 1;
@@ -46,6 +48,10 @@ exports.accpeterDemande = async (demandeId) => {
         await otherDemandeActivite.save();
       }
     }
+
+    const userUpdated = await UserService.updateUser(demandeActivite.dataValues.user_id, {role: "bénévole"})
+    const userId = demandeActivite.dataValues.user_id;
+    const participationFestivale = await ParticiperFestivaleService.createParticipation( {user_id: userId,festivale_id: festivalId} )
   } catch (error) {
     throw new Error('Erreur lors de l\'acceptation de cette demande d\'activite dans le service');
   }

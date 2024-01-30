@@ -13,9 +13,10 @@ exports.createDemanderActivite = async (req, res) => {
 
 exports.accpeterDemande = async (req, res) => {
   const {id} = req.params
+  const {festivalId} = req.params
 
   try {
-    await demanderActiviteService.accpeterDemande(id)
+    await demanderActiviteService.accpeterDemande(id, festivalId)
     res.status(201).json({message: "Demande bien accpeté"});
   }
   catch (error) {
