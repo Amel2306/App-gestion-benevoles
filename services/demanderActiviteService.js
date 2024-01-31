@@ -1,7 +1,8 @@
 const DemanderActivite = require('../models/demanderActivite');
 const { Op } = require('sequelize');
 const UserService = require('./userService');
-const ParticiperFestivaleService = require('./participerFestivaleService')
+const ParticiperFestivaleService = require('./participerFestivaleService');
+const Zonebenevole = require('../models/zonebenevole');
 
 exports.createDemanderActivite = async (demanderActiviteData) => {
   try {
@@ -141,6 +142,39 @@ exports.getDemandeByZoneCreneauAccepte = async (zoneId, creneauId) => {
       }
     })
     return allDemandes
+  }
+  catch (err) {
+    throw new Error ('Aucune demande trouvée pour cet espace')
+  }
+}
+
+exports.getDemandeByZPCreneauAccepte = async (zoneId, creneauId) => {
+  try {
+    const allZoneBenevoles = await Zonebenevole.findAll( {
+      where: {
+        zone_plan_id: {
+          [Op.eq]: zoneId
+        }
+      }
+    })
+    const tabDemande = [];
+    for (const zoneBen of allZoneBenevoles) {
+      const allDemandes = await DemanderActivite.findAll ({
+        where: {
+          zonebenevole_id: {
+            [Op.eq]: zoneBen.dataValues.id
+          },
+          creneau_id: {
+            [Op.eq]: creneauId
+          },
+          accepte: {
+            [Op.eq]: 1
+          }
+        }
+      })
+      tabDemande.push(allDemandes)
+    }
+    return tabDemande
   }
   catch (err) {
     throw new Error ('Aucune demande trouvée pour cet espace')

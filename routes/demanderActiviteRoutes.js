@@ -9,6 +9,7 @@ router.get('/creneau/:creneauId', demanderActiviteController.getDemandeByCreneau
 router.get('/zone/:zonebenevoleId', demanderActiviteController.getDemandeByZoneBenevole);
 router.get('/acceptes',  demanderActiviteController.getDemandeAcceptee)
 router.get('/zoneCreneau/:zoneId/:creneauId',  demanderActiviteController.getDemandeByZoneCreneau)
+router.get('/ZPCreneau/:zoneId/:creneauId',  demanderActiviteController.getDemandeByZPCreneauAccepte)
 router.get('/acceptes/zoneCreneau/:zoneId/:creneauId',  demanderActiviteController.getDemandeByZoneCreneauAccepte)
 
 
