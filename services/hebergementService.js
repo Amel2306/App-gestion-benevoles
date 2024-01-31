@@ -75,6 +75,16 @@ exports.rendreInvisible = async (hebergementId) => {
   }
 }
 
+exports.rendreVisible = async (hebergementId) => {
+  try {
+    const hebergementVisible = await this.updateHebergement(hebergementId, { visible: 1 });
+    return hebergementVisible;
+  } catch (error) {
+    throw new Error("Erreur lors de la modification de l\'hébergement dans le service");
+  }
+};
+
+
 exports.getHebergementByUser = async (userId) => {
   try {
     const hebergements = await Hebergement.findAll({
