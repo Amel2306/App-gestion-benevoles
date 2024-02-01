@@ -5,6 +5,7 @@ const router = express.Router()
 
 router.get("/", zonebenevoleControllers.getAllZonesBenevole);
 router.get("/:id", zonebenevoleControllers.getZoneBenevoleById);
+router.get("/post/:postId", zonebenevoleControllers.getZoneBenevoleByPost);
 router.post("/", zonebenevoleControllers.createZoneBenevole);
 router.delete("/:id", zonebenevoleControllers.deleteZoneBenevole);
 router.put("/:id", zonebenevoleControllers.updateZoneBenevole);

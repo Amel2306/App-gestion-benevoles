@@ -1,3 +1,4 @@
+const { Op } = require("sequelize");
 const ZoneBenevole = require("../models/zonebenevole");
 
 exports.getAllZonesBenevole = async () => {
@@ -22,6 +23,21 @@ exports.getZoneBenevoleById = async (zoneId) => {
     throw new Error("Erreur lors de la récupération de la zone par ID.");
   }
 };
+
+exports.getZoneBenevoleByPost = async (postId) => {
+  try {
+    const zonesOfPost = await ZoneBenevole.findAll({
+      where: {
+        post_id: {
+          [Op.eq]: postId
+        }
+      }
+    })
+    return zonesOfPost
+  }catch (error) {
+    throw new Error("Erreur lors de la récupération de les zones de ce post.");
+  }
+}
 
 exports.createZoneBenevole = async (zoneData) => {
   try {
@@ -60,3 +76,5 @@ exports.deleteZoneBenevole = async (zoneId) => {
     throw new Error("Erreur lors de la suppression de la zone.");
   }
 };
+
+

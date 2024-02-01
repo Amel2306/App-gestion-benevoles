@@ -20,6 +20,19 @@ exports.getZoneBenevoleById = async (req, res) => {
   }
 };
 
+exports.getZoneBenevoleByPost = async (req, res) => {
+  try {
+    const postId = req.params.postId;
+    const zoneBenevole = await zoneBenevoleServices.getZoneBenevoleByPost(postId);
+
+    res.status(200).json(zoneBenevole);
+
+  } catch (error) {
+    res.status(400).json({ message: "Erreur lors de la récupération de la zone bénévole par ID.", error });
+  }
+};
+
+
 exports.createZoneBenevole = async (req, res) => {
   try {
     const zoneBenevoleData = req.body;
