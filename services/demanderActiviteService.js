@@ -157,12 +157,13 @@ exports.getDemandeByZPCreneauAccepte = async (zoneId, creneauId) => {
         }
       }
     })
+    console.log(allZoneBenevoles);
     const tabDemande = [];
     for (const zoneBen of allZoneBenevoles) {
       const allDemandes = await DemanderActivite.findAll ({
         where: {
           zonebenevole_id: {
-            [Op.eq]: zoneBen.dataValues.id
+            [Op.eq]: zoneBen.id
           },
           creneau_id: {
             [Op.eq]: creneauId
@@ -172,8 +173,11 @@ exports.getDemandeByZPCreneauAccepte = async (zoneId, creneauId) => {
           }
         }
       })
+      console.log("*****")
+      console.log(allDemandes)
       tabDemande.push(allDemandes)
     }
+    console.log(tabDemande)
     return tabDemande
   }
   catch (err) {
