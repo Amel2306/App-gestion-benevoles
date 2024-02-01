@@ -157,7 +157,6 @@ exports.getDemandeByZPCreneauAccepte = async (zoneId, creneauId) => {
         }
       }
     })
-    console.log(allZoneBenevoles);
     const tabDemande = [];
     for (const zoneBen of allZoneBenevoles) {
       const allDemandes = await DemanderActivite.findAll ({
@@ -173,8 +172,40 @@ exports.getDemandeByZPCreneauAccepte = async (zoneId, creneauId) => {
           }
         }
       })
-      console.log("*****")
-      console.log(allDemandes)
+      tabDemande.push(allDemandes)
+    }
+    console.log(tabDemande)
+    return tabDemande
+  }
+  catch (err) {
+    throw new Error ('Aucune demande trouvée pour cet espace')
+  }
+}
+
+exports.getDemandeByPostCreneauAccepte = async (postId, creneauId) => {
+  try {
+    const allZoneBenevoles = await Zonebenevole.findAll( {
+      where: {
+        post_id: {
+          [Op.eq]: postId
+        }
+      }
+    })
+    const tabDemande = [];
+    for (const zoneBen of allZoneBenevoles) {
+      const allDemandes = await DemanderActivite.findAll ({
+        where: {
+          zonebenevole_id: {
+            [Op.eq]: zoneBen.id
+          },
+          creneau_id: {
+            [Op.eq]: creneauId
+          },
+          accepte: {
+            [Op.eq]: 1
+          }
+        }
+      })
       tabDemande.push(allDemandes)
     }
     console.log(tabDemande)
