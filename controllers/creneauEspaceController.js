@@ -23,3 +23,15 @@ exports.getCreneauEspaceById = async (req, res) => {
     res.status(500).json({ message: 'Erreur lors de la récupération du CreneauEspace dans le contrôleur', error });
   }
 }
+
+exports.getCreneauEspaceByPost = async (req, res) => {
+  const creneauId = req.params.creneauId
+  const postId = req.params.postId
+  try {
+    const creneauEspace = await creneauEspaceService.getCreneauEspaceByPost(creneauId, postId)
+    res.status(200).json(creneauEspace)
+  }
+  catch (error) {
+    res.status(500).json({ message: 'Erreur lors de la récupération du CreneauEspace dans le contrôleur', error });
+  }
+}
