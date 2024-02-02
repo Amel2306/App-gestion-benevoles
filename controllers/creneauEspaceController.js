@@ -28,7 +28,7 @@ exports.getCreneauEspaceByPost = async (req, res) => {
   const creneauId = req.params.creneauId
   const postId = req.params.postId
   try {
-    const creneauEspace = await creneauEspaceService.getCreneauEspaceByPost(creneauId, postId)
+    const creneauEspace = await creneauEspaceService.getCreneauEspaceByPost(postId, creneauId)
     res.status(200).json(creneauEspace)
   }
   catch (error) {
