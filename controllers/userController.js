@@ -47,3 +47,17 @@ exports.updateUser = async (req, res) => {
     .json({ message: "Error modification user dans controllers", error });  
   }
 }
+
+exports.deleteUser = async (req, res) => {
+  try {
+    console.log("je rentre")
+    const userId = req.params.id
+    const userUpdated = await userServices.deleteUser(userId)
+    res.status(201).json({message : userUpdated})
+  }
+  catch(error) {
+    res
+    .status(400)
+    .json({ message: "Impossible de supprimer l'utilisateur", error });  
+  }
+}

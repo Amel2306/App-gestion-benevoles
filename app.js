@@ -26,7 +26,7 @@ const authentification = require('./routes/authRoutes')
 
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: "https://gestionbenevoles.onrender.com" || "http://localhost:3000" ,
   })
 );
 
@@ -45,8 +45,8 @@ app.use((req, res, next) => {
 });
 
 app.use(helmet());
-app.use(express.json()); // Transforme les requêtes entrantes JSON en objet JS
-app.use(express.urlencoded({ extended: true })); // Permet de lire les données des strings dans les requêtes entrantes
+app.use(express.json()); 
+app.use(express.urlencoded({ extended: true })); 
 
 app.use("/api/festivale", festivaleRoutes);
 app.use("/api/users", userRoutes);

@@ -48,3 +48,14 @@ exports.updateUser = async (userId, dataUser) => {
         throw new Error("Erreur lors de la mise à jour du user.");
     }
 }
+
+exports.deleteUser = async (userId) => {
+    try {
+        const user = await User.findByPk(userId)
+        await user.destroy()
+        return "Utilisateur bien supprimé"
+    }
+    catch (error) {
+        throw new Error ("Impossible de supprimer l'utilisateur")
+    }
+}
