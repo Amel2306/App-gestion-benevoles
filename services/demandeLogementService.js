@@ -22,9 +22,9 @@ exports.getAllDemandesLogement = async () => {
 exports.getDemandeLogementByHebergementId = async (hebergementId) => {
   try {
     const demande = await DemandeLogement.findAll({
-        where: {
-            hebergement_id : hebergementId
-        }
+      where: {
+        hebergementId: hebergementId
+      }
     });
     return demande;
   } catch (err) {
@@ -32,9 +32,14 @@ exports.getDemandeLogementByHebergementId = async (hebergementId) => {
   }
 };
 
-exports.updateDemandeLogement = async (demandeId, newData) => {
+exports.updateDemandeLogement = async (userId, hebergementId, newData) => {
   try {
-    const demande = await DemandeLogement.findByPk(demandeId);
+    const demande = await DemandeLogement.findOne({
+      where: {
+        userId: userId,
+        hebergementId: hebergementId
+      }
+    });
     if (!demande) {
       return null;
     }

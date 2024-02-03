@@ -23,40 +23,29 @@ exports.getAllDemandesLogement = async (req, res, next) => {
   }
 };
 
-exports.getDemandeLogementByHebergementId = async (req, res, next) => {
-  const hebergement = req.params.id;
+exports.getDemandeLogementByHebergementId = async (req, res) => {
+  const hebergementId = req.params.hebergementId;
   try {
-    const demande =
-      await demandeLogementService.getDemandeLogementByHebergementId(
-        hebergement
-      );
-    if (!demande) {
-      return res
-        .status(404)
-        .json({ message: "Demande de logement non trouvée." });
-    }
+    const demande = await demandeLogementService.getDemandeLogementByHebergementId(hebergementId);
     res.status(200).json(demande);
-  } catch (err) {
-    next(err);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
   }
 };
 
-// TODO : revoir l'id (il est composé leur ID)
-exports.updateDemandeLogement = async (req, res, next) => {
-  const demandeId = req.params.id;
+
+exports.updateDemandeLogement = async (req, res) => {
+  const { userId, hebergementId } = req.params;
+  const newData = req.body;
   try {
-    const demande = await demandeLogementService.updateDemandeLogement(
-      demandeId,
-      req.body
-    );
-    if (!demande) {
-      return res
-        .status(404)
-        .json({ message: "Demande de logement non trouvée." });
+    const updatedDemande = await demandeLogementService.updateDemandeLogement(userId, hebergementId, newData);
+    if (updatedDemande) {
+      res.status(200).json(updatedDemande);
+    } else {
+      res.status(404).json({ message: "Demande de logement non trouvée" });
     }
-    res.status(200).json(demande);
-  } catch (err) {
-    next(err);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
   }
 };
 

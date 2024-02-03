@@ -8,8 +8,10 @@ router.post("/", demandeLogementController.createDemandeLogementController);
 router.get("/", demandeLogementController.getAllDemandesLogement);
 
 router.get(
-  "/hebergement/:id",
+  "/hebergement/:hebergementId",
   demandeLogementController.getDemandeLogementByHebergementId
 );
+
+router.put('/hebergement/:hebergementId/:userId', demandeLogementController.updateDemandeLogement);
 
 module.exports = router;
