@@ -4,6 +4,7 @@ const gameControllers = require ("../controllers/jeuController")
 const router = express.Router()
 
 router.get("/", gameControllers.getAllJeux);
+router.get("/:id", gameControllers.getJeuById);
 router.post("/", gameControllers.createJeu);
 router.delete("/:id", gameControllers.deleteJeu);
 router.delete("/", gameControllers.deleteAllJeu);

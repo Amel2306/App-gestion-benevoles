@@ -9,6 +9,16 @@ exports.getAllJeux = async (req, res) => {
     }
 };
 
+exports.getJeuById = async (req, res) => {
+    try {
+        const {id} = req.params
+        const jeu = await jeuxservices.getJeuById(id)
+        res.status(200).json(jeu)
+    }catch (error) {
+        res.status(500).json({ message: "Erreur lors de la récupération du jeu", error });
+    }
+}
+
 exports.createJeu = async (req, res) => {
     const jeuData = req.body;
   

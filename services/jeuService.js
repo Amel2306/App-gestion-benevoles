@@ -10,6 +10,15 @@ exports.getAllJeux = async () => {
   }
 };
 
+exports.getJeuById = async (id) => {
+  try {
+    const jeu = await Jeu.findByPk(id);
+    return jeu;
+  } catch (error) {
+    throw new Error("Erreur lors de la récupération des jeux.");
+  }
+};
+
 exports.createJeu = async (jeuData) => {
   try {
     const jeuExiste = await Jeu.findOne ({
