@@ -38,7 +38,13 @@ exports.accpeterDemande = async (demandeId, festivalId) => {
     const otherDemandeActivites = await DemanderActivite.findAll({
       where: {
         id: {
-          [Op.not]: demandeId
+          [Op.ne]: demandeId
+        },
+        user_id: {
+          [Op.eq]: demandeActivite.user_id
+        },
+        creneau_id: {
+          [Op.eq]: demandeActivite.creneau_id
         }
       }
     });
