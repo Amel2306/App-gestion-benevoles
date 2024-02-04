@@ -7,6 +7,7 @@ router.get("/", zoneplanControllers.getAllZonesPlan);
 router.get("/:id", zoneplanControllers.getZonePlanById)
 router.post("/", zoneplanControllers.createZonePlan);
 router.delete("/:id", zoneplanControllers.deleteZonePlan);
+router.delete("/", zoneplanControllers.deleteAllZP);
 router.put("/:id", zoneplanControllers.updateZonePlan);
 
 module.exports = router;

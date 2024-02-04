@@ -54,3 +54,13 @@ exports.deleteZonePlan = async (req, res) => {
     res.status(400).json({ message: "Erreur lors de la suppression de la zone.", error });
   }
 };
+
+exports.deleteAllZP = async (req, res) => {
+  try {
+    const result = await zonePlanServices.deleteAllZP();
+
+    res.json({ message: result });
+  } catch (error) {
+    res.status(400).json({ message: "Erreur lors de la suppression de la zone.", error });
+  }
+};

@@ -41,9 +41,15 @@ exports.getZoneBenevoleByPost = async (postId) => {
 
 exports.createZoneBenevole = async (zoneData) => {
   try {
+    const zoneExiste = await ZoneBenevole.findOne ({
+      where: {
+        nom_zb: {
+          [Op.eq]: zoneData.nom_zb
+        }
+      }
+    })
     const newZoneb = await ZoneBenevole.create(zoneData);
-
-    return newZoneb;
+    return zoneExiste ? zoneExiste : newZoneb;
   } catch (error) {
     throw new Error("Erreur lors de la création de la zone.");
   }
@@ -78,3 +84,14 @@ exports.deleteZoneBenevole = async (zoneId) => {
 };
 
 
+
+exports.deleteAllZB = async () => {
+  try {
+    await ZoneBenevole.destroy({
+      where: {},
+    });
+    return "Toutes les zones ont été supprimées avec succès.";
+  } catch (error) {
+    throw new Error("Erreur lors de la suppression de toutes les zones.");
+  }
+};

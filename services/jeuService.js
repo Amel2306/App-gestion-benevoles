@@ -1,4 +1,5 @@
 const Jeu = require ("../models/jeu");
+const { Op } = require("sequelize");
 
 exports.getAllJeux = async () => {
   try {
@@ -11,8 +12,15 @@ exports.getAllJeux = async () => {
 
 exports.createJeu = async (jeuData) => {
   try {
+    const jeuExiste = await Jeu.findOne ({
+      where: {
+        nom_du_jeu: {
+          [Op.eq]: jeuData.nom_du_jeu
+        }
+      }
+    })
     const newJeu = await Jeu.create(jeuData);
-    return newJeu;
+    return jeuExiste ? jeuExiste : newJeu;
   } catch (error) {
     throw new Error('Erreur lors de la création du jeu dans le service');
   }
@@ -46,3 +54,15 @@ exports.deleteJeu = async (jeuId) => {
     throw new Error("Erreur lors de la suppression du jeu.");
   }
 };
+
+exports.deleteAllJeu = async () => {
+  try {
+    const jeux = await Jeu.findAll();
+    for (const jeu of jeux ) {
+      await jeu.destroy()
+    }
+    return {message: "jeux bien supprimés"}
+  } catch (error) {
+    throw new Error("Erreur lors de la récupération des jeux.");
+  }
+}

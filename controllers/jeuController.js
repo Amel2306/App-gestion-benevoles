@@ -43,3 +43,13 @@ exports.deleteJeu = async (req, res) => {
         res.status(400).json({ message: "Erreur lors de la suppression du jeu dans le controller", error });
     }
 };
+
+exports.deleteAllJeu = async (req, res) => {
+    try {
+        const result = await jeuxservices.deleteAllJeu();
+
+        res.json( result );
+    } catch (error) {
+        res.status(400).json({ message: "Erreur lors de la suppression du jeu dans le controller", error });
+    }
+};
