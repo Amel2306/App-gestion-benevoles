@@ -26,7 +26,7 @@ const authentification = require('./routes/authRoutes')
 
 app.use(
   cors({
-    origin: "https://gestionbenevoles.onrender.com" || "http://localhost:3000" ,
+    origin: /*"https://gestionbenevoles.onrender.com" ||*/ "http://localhost:3000" ,
   })
 );
 
