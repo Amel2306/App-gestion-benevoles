@@ -26,7 +26,7 @@ const authentification = require('./routes/authRoutes')
 
 app.use(
   cors({
-    origin: "https://app-gestion-benevoles-front.vercel.app/" || "https://app-benevole-festivale-jeu.onrender.com" || "https://gestionbenevoles.onrender.com" || "http://localhost:3000" ,
+    origin: "https://app-gestion-benevoles-front.vercel.app" || "https://app-benevole-festivale-jeu.onrender.com" || "https://gestionbenevoles.onrender.com" || "http://localhost:3000" ,
   })
 );
 
