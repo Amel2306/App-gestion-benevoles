@@ -1,4 +1,5 @@
 const { Op } = require("sequelize");
+const Jeu = require("../models/jeu");
 const ZoneBenevole = require("../models/zonebenevole");
 
 exports.getAllZonesBenevole = async () => {
@@ -83,8 +84,6 @@ exports.deleteZoneBenevole = async (zoneId) => {
   }
 };
 
-
-
 exports.deleteAllZB = async () => {
   try {
     await ZoneBenevole.destroy({
@@ -95,3 +94,39 @@ exports.deleteAllZB = async () => {
     throw new Error("Erreur lors de la suppression de toutes les zones.");
   }
 };
+
+exports.nettoyageZB = async () => {
+  try {
+    const allZB = await ZoneBenevole.findAll();
+    for (const zb of allZB) {
+      const memeNom = await ZoneBenevole.findAll({
+        where:{
+          nom_zb: {
+            [Op.eq]: zb.nom_zb
+          },
+          id: {
+            [Op.ne]: zb.id
+          }
+        }
+      })
+      for (const mn of memeNom) {
+        const jeuxOfZB = await Jeu.findAll({
+          where: {
+            zone_benevole_id: {
+              [Op.eq]: mn.id
+            }
+          }
+        })
+        for (const jeu of jeuxOfZB) {
+          await jeu.update({
+            zone_benevole_id: zb.id
+          })
+        }
+        await mn.destroy()
+      }
+    }
+    return "Nettoyage effectué"
+  }catch (error) {
+    return "une erreur" + error
+  }
+}

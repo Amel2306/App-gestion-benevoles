@@ -12,6 +12,7 @@ router.get('/zoneCreneau/:zoneId/:creneauId',  demanderActiviteController.getDem
 router.get('/ZPCreneau/:zoneId/:creneauId',  demanderActiviteController.getDemandeByZPCreneauAccepte)
 router.get('/postCreneau/:postId/:creneauId',  demanderActiviteController.getDemandeByPostCreneauAccepte)
 router.get('/acceptes/zoneCreneau/:zoneId/:creneauId',  demanderActiviteController.getDemandeByZoneCreneauAccepte)
+router.delete('/:id', demanderActiviteController.deleteDemandeAct);
 
 
 module.exports = router;

@@ -123,3 +123,13 @@ exports.getDemandeByPostCreneauAccepte = async (req, res) => {
     res.status(500).json({ message: 'Erreur lors de la récupération des demandes acceptées pour ce créneau et ce post dans le contrôleur' });
   }
 }
+
+exports.deleteDemandeAct = async (req, res) => {
+  const demandeId = req.params.id;
+  try {
+    await demanderActiviteService.deleteDemandeAct(demandeId);
+    res.status(200).json({ success: true, message: 'Demande d\'activité supprimée avec succès.' });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+};

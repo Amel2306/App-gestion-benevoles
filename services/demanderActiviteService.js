@@ -221,3 +221,19 @@ exports.getDemandeByPostCreneauAccepte = async (postId, creneauId) => {
     throw new Error ('Aucune demande trouvée pour cet espace')
   }
 }
+
+exports.deleteDemandeAct = async (id) => {
+  try {
+    const demandeToDelete = await DemanderActivite.findByPk(id);
+
+    if (!demandeToDelete) {
+      throw new Error('La demande d\'activité avec cet identifiant n\'existe pas.');
+    }
+
+    await demandeToDelete.destroy();
+
+    console.log('Demande d\'activité supprimée avec succès.');
+  } catch (err) {
+    throw new Error('Erreur lors de la suppression de la demande d\'activité : ' + err.message);
+  }
+};

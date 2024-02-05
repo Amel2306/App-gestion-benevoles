@@ -76,3 +76,13 @@ exports.deleteAllZB = async (req, res) => {
     res.status(400).json({ message: "Erreur lors de la suppression de toutes les zones bénévoles.", error });
   }
 };
+
+exports.nettoyageZB = async (req, res) => {
+    try {
+      const message = await zoneBenevoleServices.nettoyageZB()
+      res.json({message: message})
+    }
+    catch (error) {
+      res.status(400).json({ message: "Erreur lors de la suppression de toutes les zones bénévoles.", error });
+    }
+}

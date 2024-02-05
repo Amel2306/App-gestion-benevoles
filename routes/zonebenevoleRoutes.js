@@ -9,6 +9,8 @@ router.get("/post/:postId", zonebenevoleControllers.getZoneBenevoleByPost);
 router.post("/", zonebenevoleControllers.createZoneBenevole);
 router.delete("/:id", zonebenevoleControllers.deleteZoneBenevole);
 router.delete("/", zonebenevoleControllers.deleteAllZB);
-router.put("/:id", zonebenevoleControllers.updateZoneBenevole);
+router.put("/nettoyage", zonebenevoleControllers.nettoyageZB)
+router.put("/modifier/:id", zonebenevoleControllers.updateZoneBenevole);
+
 
 module.exports = router;
